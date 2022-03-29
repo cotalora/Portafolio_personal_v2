@@ -1,6 +1,48 @@
 @import "../scss/_variables";
 @import "../scss/_scroll";
 
+// --------------------- MAPS ---------------------
+$job-component-properties: (
+  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1),
+  color1: var(--color-white),
+  margin: 10px 0px,
+  color2: var(--color-grey)
+);
+// ------------------------------------------------
+
+// -------------------- MIXINS --------------------
+@mixin project-container-div {
+  height: 250px;
+  border: 1px solid #ffffff;
+  width: 200px;
+  border-radius: 20px;
+  margin: 5px;
+  flex: 1 1;
+}
+// ------------------------------------------------
+
+// -------------------- FONTS ---------------------
+@font-face {
+  font-family: "ShareTechMono";
+  src: url("../assets/fonts/ShareTechMono.ttf");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("../assets/fonts/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "ZenKakuGothicAntique-Medium";
+  src: url("../assets/fonts/ZenKakuGothicAntique-Medium.ttf");
+}
+// ------------------------------------------------
+
+// -------------------- EXTENDS -------------------
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+// ------------------------------------------------
+
 html {
   scroll-behavior: smooth;
 }
@@ -23,12 +65,12 @@ h2 {
 h3 {
   font: normal normal clamp(14px, 5vw, 16px) ShareTechMono;
   margin: 0;
-  color: var(--color-grey);
+  color: map-get($job-component-properties, color2);
 }
 h4 {
   font: normal normal clamp(12px, 4vw, 14px) ShareTechMono;
   margin: 0;
-  color: var(--color-grey);
+  color: map-get($job-component-properties, color2);
 }
 p {
   font: normal normal 16px ZenKakuGothicAntique-Medium;
@@ -44,7 +86,7 @@ input[type="text"] {
   padding: 0px 12px;
   background: transparent;
   border: 1px solid var(--color-white);
-  color: var(--color-white);
+  color: map-get($job-component-properties, color1);
 }
 input[type="text"]:focus-visible {
   outline: 0;
@@ -55,26 +97,12 @@ textarea {
   padding: 12px;
   background: transparent;
   border: 1px solid var(--color-white);
-  color: var(--color-white);
+  color: map-get($job-component-properties, color1);
 }
 textarea:focus-visible {
   outline: 0;
   background: var(--color-white-transparent);
 }
-
-@font-face {
-  font-family: "ShareTechMono";
-  src: url("../assets/fonts/ShareTechMono.ttf");
-}
-@font-face {
-  font-family: "Roboto-Medium";
-  src: url("../assets/fonts/Roboto-Medium.ttf");
-}
-@font-face {
-  font-family: "ZenKakuGothicAntique-Medium";
-  src: url("../assets/fonts/ZenKakuGothicAntique-Medium.ttf");
-}
-
 .root-container {
   height: 100%;
   width: 100%;
@@ -108,8 +136,7 @@ textarea:focus-visible {
     contrast(84%);
 }
 .button-toggle {
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   background: none;
   border: none;
   position: absolute;
@@ -164,11 +191,10 @@ textarea:focus-visible {
 .section-container-menu-rigth {
   margin-top: 50px;
   ul.principal-ul {
+    @extend .flex-column;
     list-style: none;
-    display: flex;
     margin: 0;
     padding: 0;
-    flex-direction: column;
     text-align: center;
     li.principal-li {
       margin: 0px;
@@ -184,7 +210,7 @@ textarea:focus-visible {
         padding: 5px 15px;
         font: normal normal 14px ShareTechMono;
         cursor: pointer;
-        color: var(--color-grey);
+        color: map-get($job-component-properties, color2);
         align-self: center;
         transition: var(--transition-animation);
         text-decoration: none;
@@ -207,7 +233,7 @@ textarea:focus-visible {
       padding: 5px 15px;
       font: normal normal 14px ShareTechMono;
       cursor: pointer;
-      color: var(--color-grey);
+      color: map-get($job-component-properties, color2);
       align-self: center;
       transition: var(--transition-animation);
       text-decoration: none;
@@ -234,8 +260,7 @@ textarea:focus-visible {
 }
 div.sub-ul {
   opacity: 0;
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   position: absolute;
   background: var(--background);
   margin-top: 10px;
@@ -246,7 +271,7 @@ div.sub-ul {
   a {
     padding: 10px 5px;
     border-bottom: 1px solid var(--color-white);
-    color: var(--color-grey);
+    color: map-get($job-component-properties, color2);
     text-decoration: none;
     font: normal normal 14px ShareTechMono;
     &:hover {
@@ -264,7 +289,7 @@ div.sub-ul--all-width {
 .button-curriculum {
   background: none;
   border: 1px solid var(--color-white);
-  color: var(--color-white);
+  color: map-get($job-component-properties, color1);
   font: normal normal 14px ShareTechMono;
   border-radius: 20px;
   padding: 7px 25px;
@@ -280,21 +305,19 @@ div.sub-ul--all-width {
   height: 85vh;
   position: fixed;
   left: 0;
-  display: flex;
   justify-content: center;
-  flex-direction: column;
   padding-top: 100px;
+  @extend .flex-column;
   ul {
     list-style: none;
-    display: flex;
-    flex-direction: column;
+    @extend .flex-column;
     padding: 0;
     margin: 0;
     li {
       padding: 10px;
       display: flex;
       justify-content: center;
-      color: var(--color-grey);
+      color: map-get($job-component-properties, color2);
       a {
         transition: var(--transition-animation);
         img {
@@ -320,19 +343,17 @@ div.sub-ul--all-width {
   height: 85vh;
   position: fixed;
   right: 0;
-  display: flex;
   justify-content: center;
-  flex-direction: column;
   padding-top: 100px;
+  @extend .flex-column;
 }
 .email-container {
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   align-items: center;
   a {
     writing-mode: vertical-rl;
     text-decoration: none;
-    color: var(--color-grey) !important;
+    color: map-get($job-component-properties, color2) !important;
     font: normal normal 12px ShareTechMono;
     letter-spacing: 2px;
     transition: var(--transition-animation);
@@ -349,11 +370,10 @@ div.sub-ul--all-width {
   min-height: 100vh;
 }
 .section {
-  display: flex;
+  @extend .flex-column;
   -webkit-box-pack: center;
   justify-content: center;
   -webkit-box-align: center;
-  flex-direction: column;
   align-items: flex-start;
   margin: 50px 0px;
   padding: 0px;
@@ -380,7 +400,7 @@ div.sub-ul--all-width {
     border: none;
     flex: 1 1 auto;
     height: 2px;
-    background: var(--color-grey);
+    background: map-get($job-component-properties, color2);
     align-self: center;
   }
 }
@@ -392,7 +412,7 @@ div.sub-ul--all-width {
 }
 .title-section {
   font: normal normal clamp(26px, 5vw, 32px) ShareTechMono;
-  color: var(--color-white);
+  color: map-get($job-component-properties, color1);
 }
 .aboutme-info-container {
   display: flex;
@@ -417,7 +437,7 @@ div.sub-ul--all-width {
     padding: 2px 0px;
     &::before {
       content: "▪";
-      color: var(--color-white);
+      color: map-get($job-component-properties, color1);
       display: inline-block;
       width: 1em;
       margin-left: -1em;
@@ -451,8 +471,7 @@ div.sub-ul--all-width {
 }
 
 .experience-info-container {
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   width: 100%;
 }
 .job-experience-list {
@@ -480,8 +499,8 @@ div.sub-ul--all-width {
     }
   }
   button.button-job-selected {
-    border-color: var(--color-white);
-    color: var(--color-white);
+    border-color: map-get($job-component-properties, color1);
+    color: map-get($job-component-properties, color1);
     background: var(--color-white-transparent);
   }
 }
@@ -498,13 +517,13 @@ div.sub-ul--all-width {
   border-radius: 10px;
 }
 .job {
-  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: map-get($job-component-properties, transition);
   h3 {
-    color: var(--color-white);
+    color: map-get($job-component-properties, color1);
   }
   h4 {
-    margin: 10px 0px;
-    color: var(--color-grey);
+    margin: map-get($job-component-properties, margin);
+    color: map-get($job-component-properties, color2);
   }
 }
 
@@ -561,8 +580,7 @@ div.sub-ul--all-width {
   padding: 0vw 10vw;
 }
 .input-group-g {
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   padding: 12px;
 }
 .contact-input-button {
@@ -577,7 +595,7 @@ div.sub-ul--all-width {
   border-radius: 10px;
   border: 1px solid var(--color-white);
   font: normal normal 600 14px ShareTechMono;
-  color: var(--color-white);
+  color: map-get($job-component-properties, color1);
   cursor: pointer;
   margin-bottom: 50px;
   &:hover {
@@ -588,26 +606,24 @@ div.sub-ul--all-width {
 .label-form {
   font: normal normal 16px ShareTechMono;
   margin-bottom: 7px;
-  color: var(--color-white);
+  color: map-get($job-component-properties, color1);
 }
 .input-flex {
   flex: 1 1 46%;
 }
 .contact-text {
-  display: flex;
+  @extend .flex-column;
   width: 100%;
-  flex-direction: column;
   align-items: center;
   margin-bottom: 16px;
   h3 {
     font-size: clamp(18px, 8.5vw, 20px);
-    color: var(--color-white);
+    color: map-get($job-component-properties, color1);
     font-weight: 600;
   }
 }
 .contact-form {
-  display: flex;
-  flex-direction: column;
+  @extend .flex-column;
   width: 100%;
 }
 .contact-input-container {
@@ -647,12 +663,7 @@ div.sub-ul--all-width {
   width: 100%;
 }
 .projects-container div {
-  height: 250px;
-  border: 1px solid #ffffff;
-  width: 200px;
-  border-radius: 20px;
-  margin: 5px;
-  flex: 1 1;
+  @include project-container-div;
 }
 
 .social-container {
@@ -668,7 +679,7 @@ div.sub-ul--all-width {
       padding: 10px;
       display: flex;
       justify-content: center;
-      color: var(--color-grey);
+      color: map-get($job-component-properties, color2);
       a {
         transition: var(--transition-animation);
         &:hover {
