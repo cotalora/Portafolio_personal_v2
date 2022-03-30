@@ -12,12 +12,14 @@ $job-component-properties: (
 
 // -------------------- MIXINS --------------------
 @mixin project-container-div {
-  height: 250px;
+  transition: var(--transition-animation);
   border: 1px solid #ffffff;
-  width: 200px;
   border-radius: 20px;
   margin: 5px;
   flex: 1 1;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 // ------------------------------------------------
 
@@ -299,6 +301,7 @@ div.sub-ul--all-width {
 }
 .button-curriculum:hover {
   background: var(--color-white-transparent);
+  color: map-get($job-component-properties, color1);
 }
 .left-container {
   width: 100px;
@@ -641,12 +644,25 @@ div.sub-ul--all-width {
 .project-text {
   align-self: center;
   flex: 1 1 50%;
+  p {
+    margin-right: 1rem;
+  }
 }
 .project-text--ml-20 {
   margin-left: 20px;
 }
 .project-title {
   font-size: clamp(20px, 4vw, 40px);
+}
+.show-more {
+  font-weight: 500;
+  color: var(--color-white);
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
+  &:hover {
+    color: var(--color-white);
+  }
 }
 .project-media {
   flex: 1 1 50%;
@@ -664,6 +680,34 @@ div.sub-ul--all-width {
 }
 .projects-container div {
   @include project-container-div;
+  a {
+    text-decoration: none;
+  }
+  h3 {
+    font-size: 1.25rem;
+    text-align: center;
+    color: var(--color-white);
+    margin: 0;
+    margin-top: 10px;
+  }
+  img {
+    opacity: 80%;
+    width: 100%;
+    margin-top: 10px;
+    filter: grayscale(100%);
+    margin-bottom: 20px;
+  }
+  &:hover {
+    background: var(--color-white-transparent-hover);
+    cursor: pointer;
+    h3 {
+      font-weight: 600;
+    }
+    img {
+      opacity: 100%;
+      filter: grayscale(0%);
+    }
+  }
 }
 
 .social-container {
@@ -714,8 +758,28 @@ div.sub-ul--all-width {
   }
 }
 
+@media only screen and (min-width: 881px) and (max-width: 1240px)  {
+  .project-container {
+    flex-direction: column;
+  }
+  .project-container--inverted {
+    flex-direction: column-reverse;
+  }
+}
+
+@media only screen and (min-width: 681px) and (max-width: 880px) {
+  .projects-container div {
+    flex: 1 1 45%;
+  }
+  .project-container {
+    flex-direction: column;
+  }
+  .project-container--inverted {
+    flex-direction: column-reverse;
+  }
+}
 /* TABLET */
-@media only screen and (min-width: 481px) and (max-width: 768px) {
+@media only screen and (min-width: 481px) and (max-width: 680px) {
   .rigth-container,
   .left-container {
     display: none;
@@ -735,6 +799,11 @@ div.sub-ul--all-width {
   .project-container--inverted {
     flex-direction: column-reverse;
   }
+  .project-text {
+    p {
+      margin-right: 0rem;
+    }
+  }
   .project-text--ml-20 {
     margin-left: 0px;
   }
@@ -748,8 +817,15 @@ div.sub-ul--all-width {
     width: 688px;
     height: 387px;
   }
+  
+  .button-toggle {
+    display: flex;
+  }
+  .section-container {
+    display: none;
+  }
 }
-/* MOBILE */
+/* MOBILE */  
 @media only screen and (max-width: 480px) {
   .nav-container {
     padding: 0px 5px;
@@ -797,6 +873,13 @@ div.sub-ul--all-width {
   .background-me-img {
     transform: translate(10px, 5px);
   }
+  .aboutme-image {
+    height: 270px;
+  }
+  .aboutme-image .background-me-img {
+    height: 270px;
+    width: 260px;
+  }
   .aboutme-image:hover .background-me-img {
     transform: translate(5px, 2.5px);
   }
@@ -817,6 +900,11 @@ div.sub-ul--all-width {
   }
   .project-container--inverted {
     flex-direction: column-reverse;
+  }
+  .project-text {
+    p {
+      margin-right: 0rem;
+    }
   }
   .project-text--ml-20 {
     margin-left: 0px;
