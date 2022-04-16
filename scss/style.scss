@@ -425,6 +425,7 @@ div.sub-ul--all-width {
 .aboutme-text-ul {
   flex: 2 1;
   width: 100%;
+  margin-right: 30px;
 }
 .about-text p {
   text-align: justify;
@@ -436,7 +437,7 @@ div.sub-ul--all-width {
   padding-left: 20px;
   li {
     font: normal normal 16px ShareTechMono;
-    color: var(--color-p);
+    color: var(--color-white);
     padding: 2px 0px;
     &::before {
       content: "▪";
@@ -505,6 +506,7 @@ div.sub-ul--all-width {
     border-color: map-get($job-component-properties, color1);
     color: map-get($job-component-properties, color1);
     background: var(--color-white-transparent);
+    animation: OnOff 3s linear infinite;
   }
 }
 
@@ -744,8 +746,11 @@ div.sub-ul--all-width {
   cursor: pointer;
 }
 .iframe-youtube {
-  width: 529px;
-  height: 297.56px;
+  width: 500px;
+  height: 276px;
+}
+.w-500 {
+  width: 500px;
 }
 
 @keyframes MoveUpDown {
@@ -755,6 +760,16 @@ div.sub-ul--all-width {
   }
   50% {
     bottom: 20px;
+  }
+}
+
+@keyframes OnOff {
+  0%,
+  100% {
+    background: none;
+  }
+  50% {
+    background: #ffffff33;
   }
 }
 
@@ -827,6 +842,9 @@ div.sub-ul--all-width {
 }
 /* MOBILE */  
 @media only screen and (max-width: 480px) {
+  .aboutme-text-ul {
+    margin-right: auto;
+  }
   .nav-container {
     padding: 0px 5px;
   }
